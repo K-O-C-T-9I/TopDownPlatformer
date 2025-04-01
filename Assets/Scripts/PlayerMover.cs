@@ -28,25 +28,20 @@ public class PlayerMover : MonoBehaviour
 
         _directionVertical = Input.GetAxis(VERTICAL_AXE);
 
-        if (Input.GetKeyDown(KeyCode.Space) && (_directionHorizontal != 0 || _directionVertical != 0 ))
+        if ((_directionHorizontal != 0 || _directionVertical != 0) && Input.GetKeyDown(KeyCode.Space))
         {
             _isDash = true;
         }
-        //if (_directionVertical != 0 && Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    _isDash = true;
-        //}
     }
 
 
     private void FixedUpdate()
     {
-       _rigidbody.velocity = new Vector2(_directionHorizontal * SPEED_COEFICIENT * Time.fixedDeltaTime * _moveSpeed, _directionVertical * SPEED_COEFICIENT * Time.fixedDeltaTime * _moveSpeed);
+        _rigidbody.velocity = new Vector2(_directionHorizontal * SPEED_COEFICIENT * Time.fixedDeltaTime * _moveSpeed, _directionVertical * SPEED_COEFICIENT * Time.fixedDeltaTime * _moveSpeed);
 
         if (_isDash == true)
         {
-            _rigidbody.AddForce(new Vector2(_dashForced * _directionHorizontal, 0));
-            _rigidbody.AddForce(new Vector2(0, _dashForced * _directionVertical));
+            _rigidbody.AddForce(new Vector2(_dashForced * _directionHorizontal, _dashForced * _directionVertical));
             _isDash = false;
         }
     }
