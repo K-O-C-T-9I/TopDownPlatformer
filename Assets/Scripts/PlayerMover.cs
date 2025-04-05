@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMover : MonoBehaviour
 {
-    private const int SPEED_COEFICIENT = 50;
+    private const int SPEED_COEFICIENT = 25;
     private const string HORIZONTAL_AXE = "Horizontal";
     private const string VERTICAL_AXE = "Vertical";
 
@@ -37,7 +37,7 @@ public class PlayerMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.velocity = new Vector2(_directionHorizontal * SPEED_COEFICIENT * Time.fixedDeltaTime * _moveSpeed, _directionVertical * SPEED_COEFICIENT * Time.fixedDeltaTime * _moveSpeed);
+        _rigidbody.velocity = new Vector2(_directionHorizontal * SPEED_COEFICIENT *  _moveSpeed, _directionVertical * SPEED_COEFICIENT * _moveSpeed);
 
         if (_isDash == true)
         {
